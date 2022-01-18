@@ -203,10 +203,7 @@ extension ViewController {
         
         static let startButtonBottomOfset: CGFloat = -50
         static let startButtonMultiply: CGFloat = 0.8
-        static let startButtonHeight: CGFloat = 60
-
-
-        
+        static let startButtonHeight: CGFloat = 60        
     }
     
     enum Strings {
