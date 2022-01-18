@@ -64,7 +64,55 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    // MARK: - Actions
+    @objc func startButtonPressed() {
+        switch workingMode {
+        case .work:
+            startButton.setTitle("RELAX", for: .normal)
+            timerLabel.text = "10"
+            
+            basicAnimation(forTimer: workingTimer)
+            animationCircular(color: UIColor.red.cgColor)
 
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(workingTimerAction), userInfo: nil, repeats: true)
+            relaxTimer = 5
+            
+            workingMode = .relax
+        case .relax:
+            startButton.setTitle("WORK AGAIN", for: .normal)
+            timerLabel.text = "5"
+            
+            basicAnimation(forTimer: relaxTimer)
+            animationCircular(color: UIColor.green.cgColor)
+
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(relaxTimerAction), userInfo: nil, repeats: true)
+            
+            workingTimer = 10
+            
+            workingMode = .work
+        }
+    }
+    
+    @objc func workingTimerAction() {
+        workingTimer -= 1
+        timerLabel.text = "\(workingTimer)"
+        
+        if workingTimer == 0 {
+            animationCircular(color: UIColor.green.cgColor)
+            timer.invalidate()
+        }
+    }
+    
+    @objc func relaxTimerAction() {
+        relaxTimer -= 1
+        timerLabel.text = "\(relaxTimer)"
+        
+        if relaxTimer == 0 {
+            animationCircular(color: UIColor.red.cgColor)
+            timer.invalidate()
+        }
+    }
 
 }
 
