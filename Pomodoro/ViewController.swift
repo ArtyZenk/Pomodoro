@@ -68,3 +68,39 @@ class ViewController: UIViewController {
 
 }
 
+// MARK: - Settings
+extension ViewController {
+    
+    private func setupHierarch() {
+        
+        view.addSubview(startButton)
+        view.addSubview(nameAppLabel)
+        view.addSubview(shapeView)
+        view.addSubview(timerLabel)
+        
+        startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+    }
+    
+    private func setupLayout() {
+        
+        nameAppLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameAppLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        
+        shapeView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        shapeView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        shapeView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        shapeView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+
+        timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        timerLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        startButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        startButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .white
+    }
+}
