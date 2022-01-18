@@ -113,7 +113,35 @@ class ViewController: UIViewController {
             timer.invalidate()
         }
     }
-
+    
+    // MARK: - Animation
+    private func animationCircular(color: CGColor?) {
+        
+        let center = CGPoint(x: shapeView.frame.width / 2, y: shapeView.frame.height / 2)
+        let endAngle = (-CGFloat.pi / 2)
+        let startAngle = 2 * CGFloat.pi + endAngle
+        
+        let circularPath = UIBezierPath(arcCenter: center, radius: 138, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.lineWidth = 21
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeEnd = 1
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.strokeColor = color
+        shapeView.layer.addSublayer(shapeLayer)
+    }
+    
+    private func basicAnimation(forTimer type: Int) {
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        basicAnimation.toValue = 0
+        basicAnimation.duration = CFTimeInterval(type)
+        basicAnimation.fillMode =  CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = true
+        shapeLayer.add(basicAnimation, forKey: "basicAnimation")
+    }
 }
 
 // MARK: - Settings
